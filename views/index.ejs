@@ -13,12 +13,20 @@
           <p>Please Upload the scanned copies of your credentials below </p>
           <div class="form-group">
             <label for="picture">File input</label>
-            <input type="file" class="form-control-file" id="picture" aria-describedby="fileHelp" name="picture">
+            <input type="file" class="form-control-file" id="picture" aria-describedby="fileHelp" name="picture" required>
             <small id="fileHelp" class="form-text text-muted">The scanned copy should not exceed 50K</small>
           </div>
           
           <button type="submit" class="btn btn-primary" value="upload Image">Submit</button>
   </form>   
+
+  <<ul>
+        <!-- <% images.forEach(function(image){ %> -->
+            <li><%=images%></li>
+        <!-- <% }); %> -->
+
+        
+    </ul>
 
    <script   src="/javascripts/jquery-3.2.1.js"></script>
     <script   src="/javascripts/bootstrap.min.js"></script>
