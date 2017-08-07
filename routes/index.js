@@ -23,14 +23,25 @@ router.post('/upload',upload.single('picture'),function(req,res,next){
 
   var collection = db.get('images');
 
-  collection.insert(req.file,function(err,doc){
+  //check for existence
+  collection.find({originalname:req.file.originalname},function(err,image){
+    if(image){
+      res.redirect('/');
+    }
+    else{
+      collection.insert(req.file,function(err,doc){
     if(err){
       res.send('There was an issue saving the file');
     }
     else{
-      res.redirect('/');
+      res.redirect('/',{error:true});
     }
   })
+    }
+
+  })
+
+  
   
 });
 
@@ -38,11 +49,11 @@ router.post('/upload',upload.single('picture'),function(req,res,next){
 router.get('/', function(req, res, next) {
   var db = req.db;
   var collection = db.get('images')
-  collection.find().then(function(err,images){
-  res.render('index', { title: 'Express',images:images });
+  collection.find({},{},function(err,images){
+    res.render('index', { title: 'Express',images:images,error:false });
+  });
     
   });
 
-});
 
 module.exports = router;

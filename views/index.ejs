@@ -7,6 +7,10 @@
   </head>
   <body>
     <h1> Image file uploader </h1>
+
+    <% if (error) { %>
+      <h3>Image has been uploaded once</h3>
+    <% } %>
       <form class="well" center method="post" action="/upload"  enctype="multipart/form-data">
 
 
@@ -20,13 +24,13 @@
           <button type="submit" class="btn btn-primary" value="upload Image">Submit</button>
   </form>   
 
-  <<ul>
-        <!-- <% images.forEach(function(image){ %> -->
-            <li><%=images%></li>
-        <!-- <% }); %> -->
+  <ol>
+        <% images.forEach(function(image){ %>
+            <li><%=image.path%></li>
+        <% }); %>
 
         
-    </ul>
+    </ol>
 
    <script   src="/javascripts/jquery-3.2.1.js"></script>
     <script   src="/javascripts/bootstrap.min.js"></script>
