@@ -8,8 +8,8 @@ var cookieParser = require('cookie-parser');
 var csrf = require('csurf');
 
 
-var csrfProtection = csrf({ cookie: true });
-router.use(csrfProtection);
+var csrfProtection = csrf();
+// router.use(csrfProtection);
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
  
 
-router.post('/upload',upload.single('picture'),csrfProtection,function(req,res,next){
+router.post('/upload',upload.single('picture'),function(req,res,next){
   var dir = req.file.path;
   var db = req.db;
 
@@ -56,7 +56,7 @@ router.get('/', function(req, res, next) {
   var db = req.db;
   var collection = db.get('images')
   collection.find({},{},function(err,images){
-    res.render('index', { title: 'Image Uploader',images:images,error:false, csrfToken:req.csrfToken() });
+    res.render('index', { title: 'Image Uploader',images:images,error:false });
   });
     
   });

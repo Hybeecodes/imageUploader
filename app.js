@@ -12,6 +12,8 @@ var db = monk('localhost:27017/imageUpload');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var csrf = require('csurf');
+
 
 var app = express();
 
@@ -22,6 +24,7 @@ app.use(function(req,res,next){
   req.db = db;
   next();
 })
+// app.use(csrf())
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

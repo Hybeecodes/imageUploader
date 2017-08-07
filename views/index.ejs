@@ -6,7 +6,7 @@
      <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1> Image file uploader </h1>
+    <h1> <%= title %> </h1>
 
     <% if (error) { %>
       <h3>Image has been uploaded once</h3>
@@ -20,7 +20,10 @@
             <input type="file" class="form-control-file" id="picture" aria-describedby="fileHelp" name="picture" required>
             <small id="fileHelp" class="form-text text-muted">The scanned copy should not exceed 50K</small>
           </div>
-          <input type="hidden" name="csrf" value="<%= csrfToken %>">
+          <div>
+             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          </div>
+          
           
           
           <button type="submit" class="btn btn-primary" value="upload Image">Submit</button>
