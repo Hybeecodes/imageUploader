@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Noto Serif", Helvetica, Arial, sans-serif;
+  /*background-color: cadetblue;*/
+  background: url(../images/16.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: black;
+  height: 100%;
+}
+#photo{
+  float: initial;
+}
+
+a {
+  color: #00B7FF;
+}
+.well{
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width:700px;
+  
+}
+  form,.jumbotron{
+    color: black;
+  }
+  #home,.panel{
+    margin:50px;
+    color: dimgray;
+  }
+  img{
+    margin-top: 30px;
+
+  }
+  .main{
+  background-color:rgba(255,255,255,0.4);
+  width: 1500px;
+  margin: auto;
+  margin-top: 50px;
+  align-content: center;
+  }
