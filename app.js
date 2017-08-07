@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/imageUpload');
@@ -28,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({secret:'mysecret',resave:false,saveUninitialized:false}));
 app.use('/', index);
 app.use('/users', users);
 

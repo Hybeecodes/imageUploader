@@ -20,6 +20,8 @@
             <input type="file" class="form-control-file" id="picture" aria-describedby="fileHelp" name="picture" required>
             <small id="fileHelp" class="form-text text-muted">The scanned copy should not exceed 50K</small>
           </div>
+          <input type="hidden" name="csrf" value="<%= csrfToken %>">
+          
           
           <button type="submit" class="btn btn-primary" value="upload Image">Submit</button>
   </form>   
