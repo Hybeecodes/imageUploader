@@ -10,13 +10,13 @@ var csrf = require('csurf');
 
 var csrfProtection = csrf();
 // router.use(csrfProtection);
-
+var loc = __dirname+"/upload";
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,__dirname, '/uploads')
+    cb(null, loc)
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.originalname);
   }
 })
  
@@ -30,22 +30,22 @@ router.post('/upload',upload.single('picture'),function(req,res,next){
   var collection = db.get('images');
 
   //check for existence
-  collection.find({originalname:req.file.originalname},function(err,image){
-    if(image){
-      res.redirect('/');
-    }
-    else{
+  // collection.find({originalname:req.file.originalname},function(err,image){
+  //   if(image){
+  //     res.redirect('/');
+  //   }
+  //   else{
       collection.insert(req.file,function(err,doc){
     if(err){
       res.send('There was an issue saving the file');
     }
     else{
-      res.redirect('/',{error:true});
+      res.redirect('/');
     }
   })
-    }
+  //   }
 
-  })
+  // })
 
   
   
@@ -56,7 +56,8 @@ router.get('/', function(req, res, next) {
   var db = req.db;
   var collection = db.get('images')
   collection.find({},{},function(err,images){
-    res.render('index', { title: 'Image Uploader',images:images,error:false });
+    
+    res.render('index', { title: 'Image Uploader',images:images});
   });
     
   });

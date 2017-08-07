@@ -11,7 +11,6 @@ var monk = require('monk');
 var db = monk('localhost:27017/imageUpload');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var csrf = require('csurf');
 
 
@@ -35,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:'mysecret',resave:false,saveUninitialized:false}));
 app.use('/', index);
-app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
