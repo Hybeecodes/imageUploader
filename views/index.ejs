@@ -46,8 +46,13 @@
         <% images.forEach(function(image){ %>
              <li><img src="../route/upload/+<% image.filename %>+.jpg" class="img-thumbnail" alt="Image" width="304" height="236">  <p><%=image.filename%>.jpg</p> </li>
         <% }); %>
+        
 
          </ul>
+      <button class="clipboard"
+          data-clipboard-text="This will be copied">
+          Copy this
+        </button>
     
       </div>
     </div>
@@ -62,6 +67,13 @@
   </div>
 </div>
     <h1> </h1>
+    <!-- Target -->
+<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+<!-- Trigger -->
+<button class="btn" data-clipboard-target="#foo">
+    <img src="assets/clippy.svg" alt="Copy to clipboard">
+</button>
 
        
 
@@ -69,6 +81,10 @@
 
    <script   src="/javascripts/jquery-3.2.1.js"></script>
     <script   src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/clipboard.js"></script>
+    <script>
+      new Clipboard('.btn');
+      </script>
 
   </body>
 </html>

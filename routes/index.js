@@ -6,6 +6,8 @@ var monk = require('monk');
 var db = monk('localhost:27017/imageUpload');
 var cookieParser = require('cookie-parser');
 var csrf = require('csurf');
+var clipboard = require('clipboard-js');
+
 
 
 var csrfProtection = csrf();
@@ -20,6 +22,7 @@ var storage = multer.diskStorage({
   }
 })
  
+
 var upload = multer({ storage: storage })
  
 
