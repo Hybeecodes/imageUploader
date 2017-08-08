@@ -10,7 +10,7 @@
     <div class="container">
   <h2>  <%= title %> </h2>
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Choose Image</button>
+  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Choose Image</button>
 
 
 
@@ -44,37 +44,43 @@
       <div class="col">
 
         <ul>
-    <% for(var i=0; i<supplies.length; i++) { %>
+    <% for(var i=0; i<images.length; i++) { %>
         <li>
-            <a href='supplies/<%= supplies[i] %>'>
-                <%= supplies[i] %>
-            </a>
+               <li><img src="../route/upload/+<% images[i].filename %>+.jpg" class="img-circle" alt="Image" width="304" height="236">
+             <!-- Target -->
+            <input id="foo<%= i %>" value="<%=images[i].filename%>.jpg">
+              
+        <!-- Trigger -->
+        <button class="btn" data-clipboard-target="#foo<%= i %>" data-toggle="modal" data-target="#myModal2">
+            <span class="label label-primary">copy</span>
+        </button>
+          
         </li>
     <% } %>
 </ul>
-
-        <ul>
-        <% images.forEach(function(image){ %>
-          <% var i=1; %>
-
-             <li><img src="../route/upload/+<% image.filename %>+.jpg" class="img-circle" alt="Image" width="304" height="236">
-             <!-- Target -->
-            <input id="foo+<%= i %>" value="<%=image.filename%>.jpg">
-              
-        <!-- Trigger -->
-        <button class="btn" data-clipboard-target="#foo+<%= i %>">
-            <span class="label label-primary">copy</span>
-        </button>
-          <% i=i+1; %>
-          <p>
-                <%= i %>
-
-              </p>
-            </li>
-        <% }); %>
-         </ul>
       </div>
     </div>
+
+      <!-- Modal -->
+      <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Comfirmation</h4>
+            </div>
+            <div class="modal-body">
+              <p>URL Copied.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
        
 
         </div>
