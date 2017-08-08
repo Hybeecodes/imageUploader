@@ -42,24 +42,37 @@
           </form> 
       </div>
       <div class="col">
+
+        <ul>
+    <% for(var i=0; i<supplies.length; i++) { %>
+        <li>
+            <a href='supplies/<%= supplies[i] %>'>
+                <%= supplies[i] %>
+            </a>
+        </li>
+    <% } %>
+</ul>
+
         <ul>
         <% images.forEach(function(image){ %>
-             <li><img src="../route/upload/+<% image.filename %>+.jpg" class="img-thumbnail" alt="Image" width="304" height="236">
-             <!-- Target -->
-        <input id="foo" value="<%=image.filename%>.jpg">
+          <% var i=1; %>
 
+             <li><img src="../route/upload/+<% image.filename %>+.jpg" class="img-circle" alt="Image" width="304" height="236">
+             <!-- Target -->
+            <input id="foo+<%= i %>" value="<%=image.filename%>.jpg">
+              
         <!-- Trigger -->
-        <button class="btn" data-clipboard-target="#foo">
+        <button class="btn" data-clipboard-target="#foo+<%= i %>">
             <span class="label label-primary">copy</span>
         </button>
+          <% i=i+1; %>
+          <p>
+                <%= i %>
+
+              </p>
             </li>
         <% }); %>
-          
-        
-
          </ul>
-    
-    
       </div>
     </div>
        
@@ -74,11 +87,6 @@
 </div>
     <h1> </h1>
   
-
-       
-
-  
-
    <script   src="/javascripts/jquery-3.2.1.js"></script>
     <script   src="/javascripts/bootstrap.min.js"></script>
     <script src="/javascripts/clipboard.js"></script>
