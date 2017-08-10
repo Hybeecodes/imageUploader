@@ -7,8 +7,12 @@ var db = monk('localhost:27017/imageUpload');
 var cookieParser = require('cookie-parser');
 var csrf = require('csurf');
 var clipboard = require('clipboard-js');
+var jquery = require('jquery');
+var Client = require('node-rest-client').Client;
 
+var client = new Client();
 
+var root = 'https://jsonplaceholder.typicode.com';
 
 var csrfProtection = csrf();
 // router.use(csrfProtection);
@@ -24,6 +28,16 @@ var storage = multer.diskStorage({
  
 
 var upload = multer({ storage: storage })
+
+router.get('/get_images',function(req,res,next){
+  client.get('http://localhost:4000/get_all_images',function(data,response){
+  console.log(data);
+
+  console.log(response);
+  res.json(data);
+});
+
+})
  
 
 router.post('/upload',upload.single('picture'),function(req,res,next){
